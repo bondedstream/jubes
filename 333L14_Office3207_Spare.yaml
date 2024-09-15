@@ -5,8 +5,8 @@
   gather_facts: False
   become: False
 
-  #roles:
-  #  - junipernetworks.junos
+#  roles:
+#  - junipernetworks.junos
 
 # Refers to: https://docs.ansible.com/ansible/latest/collections/junipernetworks/junos/junos_interfaces_module.html 
 # Need to assign a VLAN, and set a description.
@@ -25,17 +25,32 @@
 #            vlan: vlan.0090
 #      state: replaced
 
+#- name: Merge provided configuration with device configuration (default operation
+#    is merge)
+#  junipernetworks.junos.junos_interfaces:
+#    config:
+#      - name: ge-0/0/1
+#        description: Configured by Ansible-1
+#        enabled: true
+#        units:
+#          - name: 0
+#            description: "This is logical intf unit0"
+#        mtu: 1800
+#      - name: ge-0/0/2
+#        description: Configured by Ansible-2
+#        enabled: false
+#    state: merged
 
-  - name: Merge provided configuration with device configuration (default operation is merge)
-    junos_interfaces:
-      config:
-        - name: ge-3/0/1
-          description: "WS169 - Office 3207a - Spare"
-        - name: ge-3/0/31
-          description: "WS171 - Office 3207a - Spare"
-        - name: ge-3/0/3
-          description: "WS173 - Office 3207a - Spare"
-      state: merged
+- name: Merge provided configuration with device configuration (default operation is merge)
+  junipernetworks.junos.junos_interfaces:
+    config:
+      - name: ge-3/0/1
+        description: "WS169 - Office 3207a - Spare"
+      - name: ge-3/0/31
+        description: "WS171 - Office 3207a - Spare"
+      - name: ge-3/0/3
+        description: "WS173 - Office 3207a - Spare"
+    state: merged
 
 
 
