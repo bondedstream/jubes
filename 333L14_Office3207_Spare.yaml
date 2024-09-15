@@ -1,0 +1,74 @@
+---
+- name: 
+  hosts: 333Collins_L14_Stack
+  connection: local
+  gather_facts: False
+  become: False
+
+  #roles:
+  #  - junipernetworks.junos
+
+# Refers to: https://docs.ansible.com/ansible/latest/collections/junipernetworks/junos/junos_interfaces_module.html 
+# Need to assign a VLAN, and set a description.
+  tasks:
+  - name: Assign VLAN to Office 1 South - Level 8
+    junos_l2_interfaces:
+      config:
+        - name: ge-3/0/1 #WS169 Office 3207
+          access:
+            vlan: vlan.0090
+        - name: ge-3/0/31 #WS171 Office 3207
+          access:
+            vlan: vlan.0090
+        - name: ge-3/0/3  #WS173 Office 3207
+          access:
+            vlan: vlan.0090
+      state: replaced
+
+
+  - name: Merge provided configuration with device configuration (default operation is merge)
+    junos_interfaces:
+      config:
+        - name: ge-3/0/1
+          description: "WS169 - Office 3207 - Spare"
+        - name: ge-3/0/31
+          description: "WS171 - Office 3207 - Spare"
+        - name: ge-3/0/3
+          description: "WS173 - Office 3207 - Spare"
+      state: merged
+
+
+
+#- name: "Delete L2 attributes of given interfaces (Note: This won't delete the interface itself)."
+#  junipernetworks.junos.junos_l2_interfaces:
+#    config:
+#    - name: ge-0/0/1
+#    - name: ge-0/0/2
+#    - name: ge-1/0/45
+#    - name: ge-1/0/47
+#    - name: ge-2/0/2
+#    - name: ge-2/0/4
+#    - name: ge-2/0/6
+#    - name: ge-2/0/8
+#    - name: ge-2/0/10
+#    - name: ge-2/0/12
+#    - name: ge-2/0/14
+#    - name: ge-2/0/16
+#    - name: ge-2/0/18
+#    - name: ge-2/0/20
+#    - name: ge-2/0/30
+#    - name: ge-2/0/32
+#    state: deleted
+
+
+###  This code works, but the config file formatting isn't right 
+#   - name: L2
+#     junipernetworks.junos.junos_l2_interfaces:
+#       config:
+#        - name: ge-0/0/1
+#          access:
+#            vlan: vlan.0002
+#        - name: ge-0/0/2
+#          access:
+#            vlan: vlan.0003
+#      state: replaced
