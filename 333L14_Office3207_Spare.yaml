@@ -11,19 +11,19 @@
 # Refers to: https://docs.ansible.com/ansible/latest/collections/junipernetworks/junos/junos_interfaces_module.html 
 # Need to assign a VLAN, and set a description.
   tasks:
-  - name: Assign VLAN to Office 1 South - Level 8
-    junos_l2_interfaces:
-      config:
-        - name: ge-3/0/1 #WS169 Office 3207
-          access:
-            vlan: vlan.0090
-        - name: ge-3/0/31 #WS171 Office 3207
-          access:
-            vlan: vlan.0090
-        - name: ge-3/0/3  #WS173 Office 3207
-          access:
-            vlan: vlan.0090
-      state: replaced
+#  - name: Assign VLAN to Office 1 South - Level 8
+#    junos_l2_interfaces:
+#      config:
+#        - name: ge-3/0/1 #WS169 Office 3207
+#          access:
+#            vlan: vlan.0090
+#        - name: ge-3/0/31 #WS171 Office 3207
+#          access:
+#            vlan: vlan.0090
+#        - name: ge-3/0/3  #WS173 Office 3207
+#          access:
+#            vlan: vlan.0090
+#      state: replaced
 
 
   - name: Merge provided configuration with device configuration (default operation is merge)
