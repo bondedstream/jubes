@@ -1,1 +1,4 @@
-
+- name: Retrieve Junos OS version
+  junipernetworks.junos.junos_command:
+    commands: show version
+  when: ansible_network_os == 'junipernetworks.junos.junos'
