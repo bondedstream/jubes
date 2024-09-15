@@ -30,11 +30,11 @@
     junos_interfaces:
       config:
         - name: ge-3/0/1
-          description: "WS169 - Office 3207 - Spare"
+          description: "WS169 - Office 3207a - Spare"
         - name: ge-3/0/31
-          description: "WS171 - Office 3207 - Spare"
+          description: "WS171 - Office 3207a - Spare"
         - name: ge-3/0/3
-          description: "WS173 - Office 3207 - Spare"
+          description: "WS173 - Office 3207a - Spare"
       state: merged
 
 
